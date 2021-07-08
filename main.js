@@ -92,12 +92,32 @@ function updateTodo() {
 
 // DELETE REQUEST
 function removeTodo() {
-  console.log('DELETE Request');
+   /*  This is the long way to do a DELETE with params using axios. Under is the fast way.
+  axios({
+    method: 'delete',
+    url: 'https://jsonplaceholder.typicode.com/todos/1'
+  })
+    .then(res => showOutput(res))
+    .catch(err => console.error(err));
+  */
+    axios
+    .delete('https://jsonplaceholder.typicode.com/todos/1')
+    .then(res => showOutput(res))
+    .catch(err => console.error(err));
 }
 
 // SIMULTANEOUS DATA
 function getData() {
-  console.log('Simultaneous Request');
+  //Get multiple resources. Axios all receives an array of requests. The response is also returned as array.
+  axios
+    .all([
+      axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5'),
+      axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5')
+    ])
+    //Spread allows you to create a function to access the results of the requests. Is shorter than
+    // access the results as "res => showOutput(res[0/1])" and better to identify each result.
+    .then(axios.spread((todos, posts) => showOutput(posts)))
+    .catch(err => console.error(err))
 }
 
 // CUSTOM HEADERS

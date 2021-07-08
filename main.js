@@ -1,6 +1,5 @@
 // GET REQUEST
 function getTodos() {
-  console.log('GET Request');
   /*  This is the long way to do a GET with params using axios. Under is the fast way.
   axios({
     method: 'get',
@@ -12,6 +11,12 @@ function getTodos() {
     .then(res => showOutput(res))
     .catch(err => console.error(err));
   */
+
+  //You can do a GET without specifying it as it's a GET request by default.
+  axios
+    .get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+    .then(res => showOutput(res))
+    .catch(err => console.error(err));
 }
 
 // POST REQUEST

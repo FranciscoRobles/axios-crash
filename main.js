@@ -21,7 +21,6 @@ function getTodos() {
 
 // POST REQUEST
 function addTodo() {
-  console.log('POST Request');
   /*  This is the long way to do a POST with params using axios. Under is the fast way.
   axios({
     method: 'post',
@@ -45,7 +44,50 @@ function addTodo() {
 
 // PUT/PATCH REQUEST
 function updateTodo() {
-  console.log('PUT/PATCH Request');
+  /*  This is the long way to do a PUT & PATCH with params using axios. Under is the fast way.
+  They both need you to specify the id of the element. (.../1) and only one can be executed at a time.
+  <------------------------------- PUT ------------------------------->
+  It replaces the whole element.
+  axios({
+    method: 'put',
+    url: 'https://jsonplaceholder.typicode.com/todos/1',
+    data: {
+      title: 'New todo',
+      completed: false
+    }
+  })
+    .then(res => showOutput(res))
+    .catch(err => console.error(err));
+  */
+    axios
+    .put('https://jsonplaceholder.typicode.com/todos/1', {
+      title: 'Updated todo',
+      completed: true
+    })
+    .then(res => showOutput(res))
+    .catch(err => console.error(err));
+  
+  /*
+  <------------------------------- PATCH --------------------------------->
+  It replaces only the specified fields.
+  axios({
+    method: 'put',
+    url: 'https://jsonplaceholder.typicode.com/todos',
+    data: {
+      title: 'New todo',
+      completed: false
+    }
+  })
+    .then(res => showOutput(res))
+    .catch(err => console.error(err));
+  */
+    axios
+    .patch('https://jsonplaceholder.typicode.com/todos/2', {
+      title: 'Patched todo',
+      completed: true
+    })
+    .then(res => showOutput(res))
+    .catch(err => console.error(err));
 }
 
 // DELETE REQUEST

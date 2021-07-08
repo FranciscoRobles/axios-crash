@@ -141,6 +141,13 @@ function cancelToken() {
 }
 
 // INTERCEPTING REQUESTS & RESPONSES
+//Are used to intercept a request or response before they are handled by then or catch.
+axios.interceptors.request.use(config => {
+  console.log(`${config.method.toUpperCase()} request sent to ${config.url} at ${new Date().getTime()}`);
+  return config;
+}, error => {
+  return Promise.reject(error);
+})
 
 // AXIOS INSTANCES
 

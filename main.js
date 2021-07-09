@@ -172,7 +172,14 @@ function errorHandling() {
   //It's used if you need to handle the errors in a certain way. You specify in the "catch" element.
   //You can catch both request and response errors and other kind of error if need to.
   axios
-    .get('https://jsonplaceholder.typicode.com/todoss')
+    .get('https://jsonplaceholder.typicode.com/todoss', {
+      //You can add a validateStatus property for the error handling
+      //It allows you to continue the run of the request and ignore the catch.
+      //You can limit your catch to certain status with this.
+      validateStatus: function(status) {
+        return status < 500; //Reject only if status is greater or equal to 500
+      }
+    })
     .then(res => showOutput(res))
     .catch(err => {
       if(err.response) {

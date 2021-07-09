@@ -167,7 +167,31 @@ function transformResponse() {
 
 // ERROR HANDLING
 function errorHandling() {
-  console.log('Error Handling');
+  //We added and "s" to the url to get the error.
+  //It's used if you need to handle the errors in a certain way. You specify in the "catch" element.
+  //You can catch both request and response errors and other kind of error if need to.
+  axios
+    .get('https://jsonplaceholder.typicode.com/todoss')
+    .then(res => showOutput(res))
+    .catch(err => {
+      if(err.response) {
+        //Server responded with a status other than 200 range
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+
+        if(err.response.status === 404){
+          alert("Error: Page not found");
+        }
+      }
+      else if (err.request) {
+        //Request made but no response
+        console.error(err.request);
+      }
+      else {
+        console.error(err.message);
+      }
+    });
 }
 
 // CANCEL TOKEN

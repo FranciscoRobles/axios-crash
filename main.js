@@ -122,7 +122,22 @@ function getData() {
 
 // CUSTOM HEADERS
 function customHeaders() {
-  console.log('Custom Headers');
+  //Sometimes you must send data in the header (JSON WebTokens), 
+  //that's why we create custom headers for those requests. A const for "header" must be sent.
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'someToken'
+    }
+  }
+
+  axios
+    .post('https://jsonplaceholder.typicode.com/todos', {
+      title: 'Custom header',
+      completed: false
+    }, config)
+    .then(res => showOutput(res))
+    .catch(err => console.error(err))
 }
 
 // TRANSFORMING REQUESTS & RESPONSES

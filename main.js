@@ -225,6 +225,14 @@ axios.interceptors.request.use(config => {
 })
 
 // AXIOS INSTANCES
+//You can have Axios' instances. During the course we've been dealing with the global Axios object.
+//This is to reduce the amount of code and have custom settings for our Axios.
+const axiosInstance = axios.create({
+  //Other custom settings
+  baseURL: 'https://jsonplaceholder.typicode.com'
+})
+
+//axiosInstance.get('/comments').then(res => showOutput(res));
 
 // Show output in browser
 function showOutput(res) {

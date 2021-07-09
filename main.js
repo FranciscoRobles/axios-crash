@@ -142,7 +142,21 @@ function customHeaders() {
 
 // TRANSFORMING REQUESTS & RESPONSES
 function transformResponse() {
-  console.log('Transform Response');
+  //You can transform your request/response in certain ways. It's suggested to use concat
+  // to add to the 'Response' instead of overwriting it. 
+  const options = {
+    method: 'post',
+    url: 'https://jsonplaceholder.typicode.com/todos',
+    data: {
+      title: 'Hello World'
+    },
+    transformResponse: axios.defaults.transformResponse.concat(data => {
+      data.title = data.title.toUpperCase();
+      return data;
+    })
+  }
+
+  axios(options).then(res => showOutput(res)).catch(err => console.error(err))
 }
 
 // ERROR HANDLING

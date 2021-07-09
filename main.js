@@ -1,3 +1,9 @@
+//AXIOS GLOBALS
+//This is done to avoid writing the stuff for the Custom Headers.
+//We use jwt.io (JSON Web Token)
+axios.defaults.headers.common['X-Auth-Token'] = 
+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+
 // GET REQUEST
 function getTodos() {
   /*  This is the long way to do a GET with params using axios. Under is the fast way.

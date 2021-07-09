@@ -20,7 +20,8 @@ function getTodos() {
 
   //You can do a GET without specifying it as it's a GET request by default.
   axios
-    .get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+    //You can add a timeout property for the request (maxtime for the request in miliseconds)
+    .get('https://jsonplaceholder.typicode.com/todos?_limit=5', { timeout: 5000 })
     .then(res => showOutput(res))
     .catch(err => console.error(err));
 }
